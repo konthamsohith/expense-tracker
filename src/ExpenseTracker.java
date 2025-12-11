@@ -110,11 +110,42 @@ public class ExpenseTracker extends JApplet {
                 updateTotal();
                 clearInputs();
                 JOptionPane.showMessageDialog(ExpenseTracker.this, "Expense added successfully!", "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.PLAIN_MESSAGE, new CheckIcon());
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(ExpenseTracker.this, "Invalid amount format.", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
+        }
+    }
+
+    // Custom Icon for Verified Tick
+    private static class CheckIcon implements Icon {
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Draw Green Circle
+            g2.setColor(new Color(34, 139, 34)); // Forest Green
+            g2.fillOval(x, y, getIconWidth(), getIconHeight());
+
+            // Draw White Checkmark
+            g2.setColor(Color.WHITE);
+            g2.setStroke(new BasicStroke(3));
+            g2.drawLine(x + 10, y + 20, x + 18, y + 28);
+            g2.drawLine(x + 18, y + 28, x + 30, y + 12);
+
+            g2.dispose();
+        }
+
+        @Override
+        public int getIconWidth() {
+            return 40;
+        }
+
+        @Override
+        public int getIconHeight() {
+            return 40;
         }
     }
 
