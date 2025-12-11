@@ -26,6 +26,6 @@ public class Expense implements Serializable {
 
     @Override
     public String toString() {
-        return description + " - $" + amount + " (" + category + ")";
+        return description + " - ₹" + amount + " (" + category + ")";
     }
 }

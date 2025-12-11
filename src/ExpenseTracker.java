@@ -65,7 +65,7 @@ public class ExpenseTracker extends JApplet {
 
         // Total Panel
         JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        totalLabel = new JLabel("Total Expenses: $0.00");
+        totalLabel = new JLabel("Total Expenses: ₹0.00");
         totalLabel.setFont(new Font("Arial", Font.BOLD, 14));
         totalPanel.add(totalLabel);
         add(totalPanel, BorderLayout.SOUTH);
@@ -82,7 +82,7 @@ public class ExpenseTracker extends JApplet {
         for (Expense e : expenses) {
             total += e.getAmount();
         }
-        totalLabel.setText(String.format("Total Expenses: $%.2f", total));
+        totalLabel.setText(String.format("Total Expenses: ₹%.2f", total));
     }
 
     private class AddExpenseListener implements ActionListener {
@@ -109,6 +109,8 @@ public class ExpenseTracker extends JApplet {
 
                 updateTotal();
                 clearInputs();
+                JOptionPane.showMessageDialog(ExpenseTracker.this, "Expense added successfully!", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(ExpenseTracker.this, "Invalid amount format.", "Error",
                         JOptionPane.ERROR_MESSAGE);
